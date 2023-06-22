@@ -33,6 +33,7 @@ from web3 import Web3, EthereumTesterProvider
 w3 = Web3()
 provider = EthereumTesterProvider()
 w3 = Web3(provider)
+>>>>>>> upstream/main
 ################################################################################
 # Step 1:
 # Import Ethereum Transaction Functions into the Fintech Finder Application
@@ -148,6 +149,15 @@ st.sidebar.write(account.address)
 # @TODO
 # Call `get_balance` function and pass it your account address
 # Write the returned ether balance to the sidebar
+######################################
+balance = get_balance("0xC2a5BF24d600fb83dC1E30734D058083830d725b")
+# block = w3.eth.get_block
+# address = block
+# account = w3.eth.accounts
+# address = account[1]
+# balance = get_balance(account[4])
+st.sidebar.write(balance)
+#######################################
 # account = w3.eth.accounts
 # st.sidebar.write(balance)
 # my_account = account[2]
@@ -278,7 +288,7 @@ if st.sidebar.button("Send Transaction"):
     # Call the `send_transaction` function and pass it 3 parameters:
     # Your `account`, the `candidate_address`, and the `wage` as parameters
     # Save the returned transaction hash as a variable named `transaction_hash`
-    # YOUR CODE HERE
+    transaction_hash = send_transaction(account, candidate_address, wage)
 
     # Markdown for the transaction hash
     st.sidebar.markdown("#### Validated Transaction Hash")
