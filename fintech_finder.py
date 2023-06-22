@@ -28,8 +28,11 @@
 import streamlit as st
 from dataclasses import dataclass
 from typing import Any, List
-from web3 import Web3
+from web3 import Web3 #, EthereumTesterProvider
 w3 = Web3(Web3.HTTPProvider('HTTP://127.0.0.1:7545'))
+# w3 = Web3()
+# provider = EthereumTesterProvider()
+# w3 = Web3(provider)
 ################################################################################
 # Step 1:
 # Import Ethereum Transaction Functions into the Fintech Finder Application
@@ -79,7 +82,7 @@ w3 = Web3(Web3.HTTPProvider('HTTP://127.0.0.1:7545'))
 # @TODO:
 # From `crypto_wallet.py import the functions generate_account, get_balance,
 #  and send_transaction
-from crypto_wallet.py import generate_account, get_balance
+from crypto_wallet import generate_account, get_balance, send_transaction
 ################################################################################
 # Fintech Finder Candidate Information
 
@@ -145,7 +148,13 @@ st.sidebar.write(account.address)
 # @TODO
 # Call `get_balance` function and pass it your account address
 # Write the returned ether balance to the sidebar
-st.sidebar.write(get_balance())
+balance = get_balance("0xC2a5BF24d600fb83dC1E30734D058083830d725b")
+# block = w3.eth.get_block
+# address = block
+# account = w3.eth.accounts
+# address = account[1]
+# balance = get_balance(account[4])
+st.sidebar.write(balance)
 
 ##########################################
 
@@ -267,7 +276,7 @@ if st.sidebar.button("Send Transaction"):
     # Call the `send_transaction` function and pass it 3 parameters:
     # Your `account`, the `candidate_address`, and the `wage` as parameters
     # Save the returned transaction hash as a variable named `transaction_hash`
-    # YOUR CODE HERE
+    transaction_hash = send_transaction(account, candidate_address, wage)
 
     # Markdown for the transaction hash
     st.sidebar.markdown("#### Validated Transaction Hash")
@@ -280,7 +289,7 @@ if st.sidebar.button("Send Transaction"):
 
 # The function that starts the Streamlit application
 # Writes FinTech Finder candidates to the Streamlit page
-get_people()
+get_people(w3)
 
 ################################################################################
 # Step 3: Inspect the Transaction

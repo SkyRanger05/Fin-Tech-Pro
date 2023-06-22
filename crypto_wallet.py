@@ -13,6 +13,15 @@ from bip44 import Wallet
 from web3 import Account
 from web3 import middleware
 from web3.gas_strategies.time_based import medium_gas_price_strategy
+from web3 import Web3
+from web3 import EthereumTesterProvider
+import web3
+w3 = Web3()
+provider = EthereumTesterProvider
+w3 = Web3(provider)
+
+#print("Is the connection have been established?", w3.isConnected())
+print(provider)
 
 ################################################################################
 # Wallet functionality
