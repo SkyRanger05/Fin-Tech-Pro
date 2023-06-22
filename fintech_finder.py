@@ -28,11 +28,12 @@
 import streamlit as st
 from dataclasses import dataclass
 from typing import Any, List
-from web3 import Web3 #, EthereumTesterProvider
-w3 = Web3(Web3.HTTPProvider('HTTP://127.0.0.1:7545'))
-# w3 = Web3()
-# provider = EthereumTesterProvider()
-# w3 = Web3(provider)
+from web3 import Web3, EthereumTesterProvider
+# w3 = Web3(Web3.HTTPProvider('HTTP://127.0.0.1:7545')) 
+w3 = Web3()
+provider = EthereumTesterProvider()
+w3 = Web3(provider)
+>>>>>>> upstream/main
 ################################################################################
 # Step 1:
 # Import Ethereum Transaction Functions into the Fintech Finder Application
@@ -148,6 +149,7 @@ st.sidebar.write(account.address)
 # @TODO
 # Call `get_balance` function and pass it your account address
 # Write the returned ether balance to the sidebar
+######################################
 balance = get_balance("0xC2a5BF24d600fb83dC1E30734D058083830d725b")
 # block = w3.eth.get_block
 # address = block
@@ -155,6 +157,16 @@ balance = get_balance("0xC2a5BF24d600fb83dC1E30734D058083830d725b")
 # address = account[1]
 # balance = get_balance(account[4])
 st.sidebar.write(balance)
+#######################################
+# account = w3.eth.accounts
+# st.sidebar.write(balance)
+# my_account = account[2]
+# st.sidebar.write(my_account)
+# balance = get_balance(my_account)
+# st.sidebar.write(balance)
+# balance = get_balance("0xC2a5BF24d600fb83dC1E30734D058083830d725b")
+# st.sidebar.write(balance)
+st.sidebar.markdown("### :red[\*\*I had trouble with HTTP provider, so I switched to EthereumTesterProvider. Still have problem loading the address to show balance.\*\*]")
 
 ##########################################
 
