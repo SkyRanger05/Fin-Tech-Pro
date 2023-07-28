@@ -28,11 +28,11 @@
 import streamlit as st
 from dataclasses import dataclass
 from typing import Any, List
-from web3 import Web3, EthereumTesterProvider
-# w3 = Web3(Web3.HTTPProvider('HTTP://127.0.0.1:7545')) 
-w3 = Web3()
-provider = EthereumTesterProvider()
-w3 = Web3(provider)
+from web3 import Web3 
+w3 = Web3(Web3.HTTPProvider('HTTP://127.0.0.1:7545')) 
+#w3 = Web3()
+#provider = EthereumTesterProvider()
+#w3 = Web3(provider)
 ################################################################################
 # Step 1:
 # Import Ethereum Transaction Functions into the Fintech Finder Application
@@ -137,7 +137,7 @@ account = generate_account()
 ##########################################
 
 # Write the client's Ethereum account address to the sidebar
-st.sidebar.write(account.address)
+st.sidebar.write(w3, account.address)
 
 ##########################################
 # Step 1 - Part 5:
@@ -148,15 +148,15 @@ st.sidebar.write(account.address)
 # @TODO
 # Call `get_balance` function and pass it your account address
 # Write the returned ether balance to the sidebar
-# account = w3.eth.accounts
-# st.sidebar.write(balance)
+account_balance = get_balance(w3, account.address) 
+st.sidebar.write("Client Account Balance", account_balance)
 # my_account = account[2]
 # st.sidebar.write(my_account)
 # balance = get_balance(my_account)
 # st.sidebar.write(balance)
 # balance = get_balance("0xC2a5BF24d600fb83dC1E30734D058083830d725b")
 # st.sidebar.write(balance)
-st.sidebar.markdown("### :red[\*\*I had trouble with HTTP provider, so I switched to EthereumTesterProvider. Still have problem loading the address to show balance.\*\*]")
+#st.sidebar.markdown("### :red[\*\*I had trouble with HTTP provider, so I switched to EthereumTesterProvider. Still have problem loading the address to show balance.\*\*]")
 
 ##########################################
 
@@ -279,6 +279,7 @@ if st.sidebar.button("Send Transaction"):
     # Your `account`, the `candidate_address`, and the `wage` as parameters
     # Save the returned transaction hash as a variable named `transaction_hash`
     # YOUR CODE HERE
+    transaction_hash = send_transaction(w3, account, candidate_address, wage)
 
     # Markdown for the transaction hash
     st.sidebar.markdown("#### Validated Transaction Hash")
