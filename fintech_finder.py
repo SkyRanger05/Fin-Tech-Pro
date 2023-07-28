@@ -149,15 +149,6 @@ st.sidebar.write(w3, account.address)
 # Write the returned ether balance to the sidebar
 account_balance = get_balance(w3, account.address) 
 st.sidebar.write("Client Account Balance", account_balance)
-######################################
-# my_account = account[2]
-# st.sidebar.write(my_account)
-# balance = get_balance(my_account)
-# st.sidebar.write(balance)
-# balance = get_balance("0xC2a5BF24d600fb83dC1E30734D058083830d725b")
-# st.sidebar.write(balance)
-#st.sidebar.markdown("### :red[\*\*I had trouble with HTTP provider, so I switched to EthereumTesterProvider. Still have problem loading the address to show balance.\*\*]")
-
 ##########################################
 
 # Create a select box to chose a FinTech Hire candidate
