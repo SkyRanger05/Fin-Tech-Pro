@@ -13,7 +13,6 @@
 # * Calculate the total value of an Ethereum transaction, including the gas
 # estimate, that pays a Fintech Finder candidate for their work.
 
-# * Digitally sign a transaction that pays a Fintech Finder candidate, and send
 # this transaction to the Ganache blockchain.
 
 # * Review the transaction hash code associated with the validated blockchain transaction.
@@ -150,6 +149,7 @@ st.sidebar.write(w3, account.address)
 # Write the returned ether balance to the sidebar
 account_balance = get_balance(w3, account.address) 
 st.sidebar.write("Client Account Balance", account_balance)
+######################################
 # my_account = account[2]
 # st.sidebar.write(my_account)
 # balance = get_balance(my_account)
